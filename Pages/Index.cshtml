@@ -1,0 +1,81 @@
+﻿@page
+@model  IndexModel
+@section Scripts{
+    <script src="~/js/site.js" type="text/javascript" asp-append-version="true"></script>
+
+}
+@{
+    ViewData["Title"] = "Customer";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                CostumerId
+            </th>
+            <th>
+               FirstName
+            </th>
+            <th>
+               LastName
+            </th>
+            <th>
+               Email
+            </th>
+            <th>
+               Phone Number
+            </th>
+            <th>
+               Country Code
+            </th>
+            <th>
+               Gender
+            </th>
+            <th>
+               Balance
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model.Costumers)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => c.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => c.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => c.LastName)
+                </td>
+                <td>
+                    <a href="@Html.DisplayFor(modelItem => c.Email)">@Html.DisplayFor(modelItem => c.Email)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => c.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => c.CountryCode)
+                </td>
+                 <td>
+                    @Html.DisplayFor(modelItem => c.Gender)
+                </td>
+                 <td id="balance">
+                    @Html.DisplayFor(modelItem => c.Balance)
+                </td>
+                <td>
+                <a asp-action="Edit" asp-route-id="@c.CustomerId" >Edit</a> |
+                <a asp-action="Delete" asp-route-id="@c.CustomerId">Delete</a>
+            </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<br />
+<button type="button" onclick="window.location.href = '/Customer'">New Customer</button>
+
+

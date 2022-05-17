@@ -1,0 +1,40 @@
+﻿@page
+<script>
+    function ValidateEmail() {
+        let email = document.forms["customerForm"]["email"].value;
+        let text;
+        if (email == "") {
+            document.getElementById('submitbtn').disabled = 'disabled';
+            text = "Email is required!";
+        } else {
+            document.getElementById('submitbtn').disabled = false;
+            text = "";
+        }
+        document.getElementById('error').innerHTML = text;
+    }
+</script>
+
+@model WebApplication1.Pages.CustomerModel
+@{
+}
+<h2>Enter customer information!</h2>
+
+<form name="customerForm" method="post" >
+    Customer ID:<br />
+    <input type="number" name="customerId" value="@Model._customer.CustomerId" /><br />
+    FirstName:<br />
+    <input type="text" name="firstname" value="@Model._customer.FirstName" /><br />
+    LastName:<br />
+    <input type="text" name="lastname" value="@Model._customer.LastName" /><br />
+    Email*<br />
+    <input id="email" type="email" name="email" value="@Model._customer.Email" onkeyup="ValidateEmail()" /> <span id="error"></span> <br />
+    Phone Number<br />
+    <input type="number" name="phonenumber" value="@Model._customer.PhoneNumber" /><br />
+    Country Code<br />
+    <input type="text" name="countrycode" value="@Model._customer.CountryCode" /><br />
+    Gender<br />
+    <input type="text" name="gender" value="@Model._customer.Gender" /><br />
+    Balance<br />
+    <input type="number" name="balance" value="@Model._customer.Balance" /><br /><br />
+    <input type="submit" value="Submit" class="submit" id="submitbtn" disabled/>
+</form>
